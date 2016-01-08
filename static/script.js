@@ -10,21 +10,15 @@ function initYoutube() {
 
 }
 
-/*win.on( 'ui-view-resize ui-view-maximize ui-view-unmaximize', function(){
-	console.log('max');
-	var center = map.getCenter();
-	google.maps.event.trigger(map, "resize");
-	map.setCenter(center);
-});*/
+var loadList = function(){
 
-win.on( 'click', '.ui-input-search i' , function(){
   console.log('busco');
 
-  var request = gapi.client.youtube.search.list({
+  /*var request = gapi.client.youtube.search.list({
 
      part: "snippet",
      type: "video",
-     q: encodeURIComponent($(".ui-input-search input").val()).replace(/%20/g, "+"),
+     q: encodeURIComponent( $(".ui-input-search input").val() ).replace(/%20/g, "+"),
      maxResults: 3,
      order: "viewCount",
      publishedAfter: "2015-01-01T00:00:00Z"
@@ -50,7 +44,19 @@ win.on( 'click', '.ui-input-search i' , function(){
      });
 
      $(".content").append(videoItems);
-  });
+  });*/
+
+}
+
+win.on( 'click', '.ui-input-search i' , function(){
+
+  loadList();
+
+})
+
+.key( 'enter', function(){
+
+  console.log('busco');
 
 });
 

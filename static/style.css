@@ -2,20 +2,59 @@
   width: 100%;
 }
 
+.ui-header{
+  height: 50px;
+}
+
 .ui-header.firstStart{
   border-bottom: none;
   background-color: #f6f7f9;
   background-image: none;
 }
 
-.ui-window-content.firstStart{
+.arrow{
+  width: 16px;
+  height: 16px;
+  float: left;
+  margin-left: 15px;
+  margin-top: 17px;
+  margin-right: 13px;
+}
+
+.arrow i{
+  width: 16px;
+  height: 16px;
+  background-image: url('@static/assets/arrow.png');
+  background-size: 16px 16px;
+  display: inline-block;
+  /*display: none;*/
+}
+
+.youtube-logo{
+  width: 71px;
+  height: 30px;
+  float: left;
+  margin-top: 10px;
+  margin-right: 42px;
+}
+
+.youtube-logo i{
+  width: 71px;
+  height: 30px;
+  background-image: url('@static/assets/logo.png');
+  background-size: 71px 30px;
+  display: inline-block;
+  /*display: none;*/
+}
+
+.ui-window-content.startScreen.firstStart{
   background-color: #f6f7f9;
 }
 
 .youtubeBig{
   width: 323px;
   height: 135px;
-  background-image: url('https://static.inevio.com/app/209/assets/logo-big.png');
+  background-image: url('@static/assets/logo-big.png');
   background-size: 323px 135px;
   margin: 145px 271px 0px 270px;
   display: inline-block;
@@ -29,4 +68,18 @@
 
 .ui-window-content .ui-input-search.active{
   border-color: #e62117;
+}
+
+.ui-window-content .ui-input-search.active .search-icon{
+  border-right: 1px solid #e62117;
+}
+
+.ui-window-content .ui-input-search.active .search-icon i {
+  background-image: url('@static/assets/search-red.png');
+  background-size: 16px 16px;
+  background-position: 0px 0px;
+}
+
+.ui-window-content.listScreen.firstStart{
+  background-color: #f6f7f9;
 }
