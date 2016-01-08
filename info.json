@@ -33,21 +33,21 @@
 
                     "template" : "main.html",
 
-                    "maxizable" : true,
-                    "resizable" : true,
+                    "maxizable" : false,
+                    "resizable" : false,
 
                     "width"  : {
 
-                        "default" : 1000,
-                        "min"     : 1000,
+                        "default" : 864,
+                        "min"     : 864,
                         "max"     : 0
 
                     },
 
                     "height" : {
 
-                        "default" : 540,
-                        "min"     : 540,
+                        "default" : 536,
+                        "min"     : 536,
                         "max"     : 0
 
                     },

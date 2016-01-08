@@ -1,3 +1,32 @@
-.content{
+.ui-window-content{
   width: 100%;
+}
+
+.ui-header.firstStart{
+  border-bottom: none;
+  background-color: #f6f7f9;
+  background-image: none;
+}
+
+.ui-window-content.firstStart{
+  background-color: #f6f7f9;
+}
+
+.youtubeBig{
+  width: 323px;
+  height: 135px;
+  background-image: url('https://static.inevio.com/app/209/assets/logo-big.png');
+  background-size: 323px 135px;
+  margin: 145px 271px 0px 270px;
+  display: inline-block;
+}
+
+.ui-window-content .ui-input-search{
+  margin-top: 66px;
+  margin-left: 254px;
+  width: 354px;
+}
+
+.ui-window-content .ui-input-search.active{
+  border-color: #e62117;
 }
