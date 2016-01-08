@@ -1,0 +1,65 @@
+{
+
+    "name" : "Test",
+
+    "version" : "1.0",
+    "stage"   : "beta",
+    "api"     : "a100d2",
+
+    "language" : {
+
+        "default" : "en-en",
+        "list"    : [ "en-en" ]
+
+    },
+
+    "device" : {
+
+        "desktop" : {
+
+            "primary" : "main",
+            "service" : [],
+            "common" : {
+
+                "css"    : [],
+                "script" : [],
+                "start"  : []
+
+            },
+
+            "view" : {
+
+                "main" : {
+
+                    "template" : "main.html",
+
+                    "maxizable" : true,
+                    "resizable" : true,
+
+                    "width"  : {
+
+                        "default" : 1000,
+                        "min"     : 1000,
+                        "max"     : 0
+
+                    },
+
+                    "height" : {
+
+                        "default" : 540,
+                        "min"     : 540,
+                        "max"     : 0
+
+                    },
+
+                    "css"    : ["style.css"],
+                    "script" : ["script.js"],
+                    "start"  : []
+
+                }
+            }
+        }
+
+    }
+
+}
