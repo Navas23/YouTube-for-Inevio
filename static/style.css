@@ -1,9 +1,15 @@
 .ui-window-content{
   width: 100%;
+  height: ~'calc(100% - 51px)';
 }
 
 .ui-header{
   height: 50px;
+  background-image: none;
+}
+
+.ui-header-buttons{
+  margin-top: 4px;
 }
 
 .ui-header.firstStart{
@@ -12,7 +18,7 @@
   background-image: none;
 }
 
-.arrow{
+.ui-header .arrow{
   width: 16px;
   height: 16px;
   float: left;
@@ -21,16 +27,15 @@
   margin-right: 13px;
 }
 
-.arrow i{
+.ui-header .arrow i{
   width: 16px;
   height: 16px;
   background-image: url('@static/assets/arrow.png');
   background-size: 16px 16px;
-  display: inline-block;
-  /*display: none;*/
+  display: none;
 }
 
-.youtube-logo{
+.ui-header .youtube-logo{
   width: 71px;
   height: 30px;
   float: left;
@@ -38,20 +43,64 @@
   margin-right: 42px;
 }
 
-.youtube-logo i{
+.ui-header .youtube-logo i{
   width: 71px;
   height: 30px;
   background-image: url('@static/assets/logo.png');
   background-size: 71px 30px;
   display: inline-block;
-  /*display: none;*/
 }
 
-.ui-window-content.startScreen.firstStart{
+.ui-header .ui-input-search{
+  float: left;
+  margin-left: 40px;
+  margin-top: 5px;
+  width: 475px;
+  border: 1px solid transparent;
+}
+
+.ui-header .ui-input-search input, .ui-header .ui-input-search.active input{
+  width: 365px;
+}
+
+.ui-header .ui-input-search .search-icon, .ui-header .ui-input-search.active .search-icon{
+  border-right: none;
+  border-left: 1px solid #ccd3d5;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  padding-left: 20px;
+  margin: 5px 10px 0px 0px;
+}
+
+.ui-header .ui-input-search .search-icon i, .ui-header .ui-input-search.active .search-icon i{
+  background-image: url('@static/assets/search-red.png');
+  background-size: 16px 16px;
+  background-position: 0px 0px;
+}
+
+.ui-header .ui-input-search.active{
+  border: 1px solid transparent;
+  box-shadow: none;
+}
+
+.ui-header.playing .arrow i{
+  display: inline-block;
+}
+
+.ui-header.firstStart .youtube-logo i{
+  display: none;
+}
+
+.ui-header.firstStart .ui-input-search{
+  display: none;
+}
+
+
+.startScreen{
   background-color: #f6f7f9;
 }
 
-.youtubeBig{
+.youtube-big{
   width: 323px;
   height: 135px;
   background-image: url('@static/assets/logo-big.png');
@@ -60,26 +109,126 @@
   display: inline-block;
 }
 
-.ui-window-content .ui-input-search{
+.startScreen{
+  width: 100%;
+  height: 100%;
+}
+
+.startScreen .ui-input-search{
   margin-top: 66px;
   margin-left: 254px;
   width: 354px;
 }
 
-.ui-window-content .ui-input-search.active{
+.startScreen .ui-input-search.active{
   border-color: #e62117;
 }
 
-.ui-window-content .ui-input-search.active .search-icon{
+.startScreen .ui-input-search.active .search-icon{
   border-right: 1px solid #e62117;
 }
 
-.ui-window-content .ui-input-search.active .search-icon i {
+.startScreen .ui-input-search.active .search-icon i {
   background-image: url('@static/assets/search-red.png');
   background-size: 16px 16px;
   background-position: 0px 0px;
 }
 
-.ui-window-content.listScreen.firstStart{
+.ui-window-content.firstStart .list-screen{
   background-color: #f6f7f9;
+  display: none;
+}
+
+.ui-window-content .list-screen{
+  background-color: #f6f7f9;
+  width: 100%;
+  height: 100%;
+}
+
+.ui-window-content .video-list{
+  margin: 13px;
+  width: ~'calc(100% - 66px)';
+  height: ~'calc(100% - 46px)';
+  display: inline-block;
+  -webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	background-color: #fff;
+	-webkit-box-shadow: 0 1px 4px rgba(0,0,0,.2);
+	-moz-box-shadow: 0 1px 4px rgba(0,0,0,.2);
+	box-shadow: 0 1px 4px rgba(0,0,0,.2);
+  padding: 20px 20px 0px 20px;
+}
+
+.video-item{
+  height: 112px;
+  margin-bottom: 20px;
+}
+
+.video-item .thumbnail{
+  width: 200px;
+  height: 112px;
+  float: left;
+}
+
+.video-item .thumbnail figure{
+  width: 100%;
+  height: 100%;
+}
+
+.video-item .thumbnail i{
+  width: 100%;
+  height: 100%;
+  background-size: 200px 112px;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.video-item .video-info{
+  float: left;
+  height: 100%;
+  margin-left: 10px;
+  width: ~'calc(100% - 210px)';
+}
+
+.video-item .title{
+  cursor: pointer;
+  color: #167ac6;
+  font-size: 16px;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.video-item .channel{
+  color: #167ac6;
+  font-size: 13px;
+  margin-bottom: 5px;
+}
+
+.video-item .date{
+  font-size: 13px;
+  float: left;
+  margin-right: 10px;
+}
+
+.video-item .visitors{
+  font-size: 13px;
+  margin-bottom: 25px;
+}
+
+.video-item .description{
+  font-size: 13px;
+}
+
+.playing-screen{
+  width: 100%;
+  height: ~'calc(100% - 51px)';
+  position: absolute;
+  top: 51px;
+  left: 864px;
+}
+
+.playing-screen iframe{
+  width: 100%;
+  height: 100%;
 }
