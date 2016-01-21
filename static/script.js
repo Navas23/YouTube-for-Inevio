@@ -102,7 +102,7 @@ win.on( 'click', '.ui-input-search .search-icon i' , function(){
 
 })
 
-.on( 'click', '.video-item .title, .vide-item .thumbnail' , function(){
+.on( 'click', '.video-item .title, .video-item .thumbnail' , function(){
 
   playVideo( $(this).parents('.video-item').data('videoId') );
 
