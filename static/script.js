@@ -77,7 +77,7 @@ var backToList = function (){
 
 var playVideo = function ( videoId ){
 
-  videoPlayer.attr('src', '//www.youtube.com/embed/' + videoId);
+  videoPlayer.attr('src', '//www.youtube.com/embed/' + videoId + '?autoplay=1');
 
   $('.list-screen').animate({
 
