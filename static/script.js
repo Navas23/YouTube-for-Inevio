@@ -1,7 +1,7 @@
 var map;
 var win = $(this);
 var videoItemPrototype = $('.video-item.wz-prototype');
-var state = 0; // 0 == startScreen, 1 == listScreen; 2 == playing
+var state = 0; // 0 == startScreen, 1 == listScreen; 2 == playing; 3 == playingThumbnail
 var videoPlayer = $('.playing-screen iframe');
 
 function initYoutube() {
@@ -14,6 +14,7 @@ function initYoutube() {
 
 var loadList = function( searchQuery ){
 
+  console.log(arguments);
   $('.list-screen .video-item').not('.wz-prototype').remove();
 
   var request = gapi.client.youtube.search.list({
@@ -46,7 +47,10 @@ var loadList = function( searchQuery ){
      });
 
     $('.video-list').append(videoItems);
-    state = 1;
+    if( state != 3){
+      state = 1;
+    }
+
   });
 
 }
@@ -66,8 +70,24 @@ var backToList = function (){
     );
 
     $('.playing-screen').animate({
-      'left': '864px'},800, function(){
+      'left': '500px', 'top': '320px', 'width': '320px', 'height': '180px'},800, function(){
+      }
+    );
+
+    $('.playing-screen .playing-cover').addClass('active');
+
+    state = 3;
+
+  }else if ( state == 3 ) {
+
+    //'left': '864px','top': '51px', 'width': '100%', 'height': '100%'
+
+    $('.playing-screen').animate({
+      'opacity' : '0'},800, function(){
         videoPlayer.attr('src', '');
+        $('.playing-screen').css({'left': '864px','top': '51px', 'width': '100%', 'height': 'inherit', 'opacity' : '1'})
+        state = 2;
+        $('.playing-screen .playing-cover').removeClass('active');
       }
     );
 
@@ -77,7 +97,9 @@ var backToList = function (){
 
 var playVideo = function ( videoId ){
 
-  videoPlayer.attr('src', '//www.youtube.com/embed/' + videoId);
+  if( state != 3 || typeof videoId !== 'undefined' ){
+    videoPlayer.attr('src', '//www.youtube.com/embed/' + videoId + '?autoplay=1');
+  }
 
   $('.list-screen').animate({
 
@@ -90,9 +112,19 @@ var playVideo = function ( videoId ){
 
   );
 
-  $('.playing-screen').animate({
-    'left': '0px'},800
-  );
+  if ( state == 3 ){
+
+    $('.playing-screen').animate({
+      'left': '0px', 'top': '51px', 'width': '100%', 'height': $('.ui-window-content').css('height')},800
+    );
+
+  }else{
+
+    $('.playing-screen').animate({
+      'left': '0px'},800
+    );
+
+  }
 
 }
 
@@ -102,7 +134,7 @@ win.on( 'click', '.ui-input-search .search-icon i' , function(){
 
 })
 
-.on( 'click', '.video-item .title, .vide-item .thumbnail' , function(){
+.on( 'click', '.video-item .title, .video-item .thumbnail' , function(){
 
   playVideo( $(this).parents('.video-item').data('videoId') );
 
@@ -111,6 +143,22 @@ win.on( 'click', '.ui-input-search .search-icon i' , function(){
 .on( 'click', '.ui-header .arrow i' , function(){
 
   backToList();
+
+})
+
+.on( 'click' , '.playing-screen .playing-cover.active', function(e){
+
+  if( state == 3 ){
+    playVideo();
+    $(this).removeClass('active');
+  }
+
+})
+
+.on( 'click' , '.playing-screen .playing-cover.active i', function(e){
+
+  backToList();
+  e.stopPropagation();
 
 })
 
@@ -131,17 +179,17 @@ win.on( 'click', '.ui-input-search .search-icon i' , function(){
     );
     searchQuery = $('.startScreen .ui-input-search input').val();
 
-  }else if( state == 1 ){
-
-    searchQuery = $('.ui-header .ui-input-search input').val();
-
-  }else{
+  }else if ( state == 2) {
 
     searchQuery = $('.ui-header .ui-input-search input').val();
     backToList();
 
+  }else{
+    searchQuery = $('.ui-header .ui-input-search input').val();
   }
 
+
+  console.log(searchQuery);
   loadList( searchQuery );
 
 });
