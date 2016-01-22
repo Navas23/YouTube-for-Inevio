@@ -69,8 +69,10 @@ var backToList = function (){
 
     );
 
+    console.log('vuelvo');
+
     $('.playing-screen').animate({
-      'left': '500px', 'top': '320px', 'width': '320px', 'height': '180px'},800, function(){
+      right: '30px', bottom: '20px' , width: '320px', height: '180px'},800, function(){
       }
     );
 
@@ -80,12 +82,12 @@ var backToList = function (){
 
   }else if ( state == 3 ) {
 
-    //'left': '864px','top': '51px', 'width': '100%', 'height': '100%'
-
     $('.playing-screen').animate({
       'opacity' : '0'},800, function(){
+        $('.playing-screen').removeClass('active');
         videoPlayer.attr('src', '');
-        $('.playing-screen').css({'left': '864px','top': '51px', 'width': '100%', 'height': 'inherit', 'opacity' : '1'})
+        var rightValue = '-' + $('.ui-window-content').css('width');
+        $('.playing-screen').css({'right': rightValue,'bottom': '0px', 'width': '100%', 'height': 'inherit', 'opacity' : '1'})
         state = 2;
         $('.playing-screen .playing-cover').removeClass('active');
       }
@@ -97,13 +99,18 @@ var backToList = function (){
 
 var playVideo = function ( videoId ){
 
+  $('.playing-screen').addClass('active');
+
   if( state != 3 || typeof videoId !== 'undefined' ){
     videoPlayer.attr('src', '//www.youtube.com/embed/' + videoId + '?autoplay=1');
   }
 
+  var width = $('.ui-window-content').css('width');
+  width = '-' + width;
+
   $('.list-screen').animate({
 
-    'margin-left': '-864px'},800
+    'margin-left': width},800
     ,function(){
       $('.ui-header').addClass('playing');
       $('.ui-window-content').addClass('playing');
@@ -115,13 +122,13 @@ var playVideo = function ( videoId ){
   if ( state == 3 ){
 
     $('.playing-screen').animate({
-      'left': '0px', 'top': '51px', 'width': '100%', 'height': $('.ui-window-content').css('height')},800
+      'right': '0px', 'top': '51px', 'width': '100%', 'height': $('.ui-window-content').css('height')},800
     );
 
   }else{
 
     $('.playing-screen').animate({
-      'left': '0px'},800
+      'right': '0px'},800
     );
 
   }
@@ -162,15 +169,36 @@ win.on( 'click', '.ui-input-search .search-icon i' , function(){
 
 })
 
+.on( 'ui-view-resize-start' , function(e){
+
+  console.log('resizing');
+  if(state != 3){
+    $('.playing-cover').addClass('active');
+  }
+
+})
+
+.on( 'ui-view-resize-end' , function(e){
+
+  console.log('end');
+  if(state != 3){
+    $('.playing-cover').removeClass('active');
+  }
+
+})
+
 .key( 'enter', function(){
 
   var searchQuery;
 
   if( state == 0 ){
 
+    var height = $('.ui-window-content').css('height');
+    height = '-' + height;
+
     $('.ui-header .ui-input-search input').val( $('.startScreen .ui-input-search input').val() );
     $('.startScreen').animate({
-      'margin-top': '-536px'},800
+      'margin-top': height},800
       ,function(){
         $('.startScreen').css('display', 'none');
         $('.ui-header.firstStart').removeClass('firstStart');
