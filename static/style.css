@@ -237,6 +237,10 @@
   display: block;
 }
 
+.playing-screen.full{
+  height: ~'calc(100% - 51px)' !important;
+}
+
 .playing-screen .playing-cover{
   width: 100%;
   height: 100%;

@@ -58,12 +58,15 @@ var backToList = function (){
 
   if( state == 2 ){
 
+    $('.playing-screen').removeClass('full');
+
     $('.list-screen').animate({
 
       'margin-left': '0px'},800
       ,function(){
         $('.ui-header').removeClass('playing');
         $('.ui-window-content').removeClass('playing');
+
       }
 
     );
@@ -84,7 +87,8 @@ var backToList = function (){
         $('.playing-screen').removeClass('active');
         videoPlayer.attr('src', '');
         var rightValue = '-' + $('.ui-window-content').css('width');
-        $('.playing-screen').css({'right': rightValue,'bottom': '0px', 'width': '100%', 'height': 'inherit', 'opacity' : '1'})
+        //console.log()
+        $('.playing-screen').css({'right': rightValue,'bottom': '0px', 'width': '100%', 'height': "100%", 'opacity' : '1'})
         state = 2;
         $('.playing-screen .playing-cover').removeClass('active');
       }
@@ -111,6 +115,7 @@ var playVideo = function ( videoId ){
     ,function(){
       $('.ui-header').addClass('playing');
       $('.ui-window-content').addClass('playing');
+      $('.playing-screen').addClass('full');
       state = 2;
     }
 
@@ -119,7 +124,9 @@ var playVideo = function ( videoId ){
   if ( state == 3 ){
 
     $('.playing-screen').animate({
-      'right': '0px', 'bottom': '0px', 'width': '100%', 'height': $('.ui-window-content').css('height')},800
+      'right': '0px', 'bottom': '0px', 'width': '100%', 'height': $('.ui-window-content').css('height'), function(){
+        $('.playing-screen').addClass('full');
+      }},800
     );
 
   }else{
