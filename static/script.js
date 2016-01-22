@@ -98,15 +98,19 @@ var backToList = function (){
 
   }else if ( state == 3 ) {
 
-    $('.playing-screen').transition({
+
+
+    $('.playing-screen, .playing-cover').transition({
       'opacity' : '0'},800, function(){
+
+        $('.playing-cover').removeClass('active').css('opacity', '1');
         $('.playing-screen').removeClass('active');
         videoPlayer.attr('src', '');
         var rightValue = '-' + $('.ui-window-content').css('width');
         //console.log()
         $('.playing-screen').css({'right': rightValue,'bottom': '0px', 'width': '100%', 'height': "100%", 'opacity' : '1'})
         state = 2;
-        $('.playing-cover').removeClass('active');
+
       }
     );
 
