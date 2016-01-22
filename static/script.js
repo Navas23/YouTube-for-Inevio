@@ -98,8 +98,6 @@ var backToList = function (){
 
   }else if ( state == 3 ) {
 
-
-
     $('.playing-screen, .playing-cover').transition({
       'opacity' : '0'},800, function(){
 
@@ -123,7 +121,7 @@ var playVideo = function ( videoId ){
   $('.playing-screen').addClass('active');
 
   if( state != 3 || typeof videoId !== 'undefined' ){
-    videoPlayer.attr('src', '//www.youtube.com/embed/' + videoId + '?autoplay=1');
+    videoPlayer.attr('src', '//www.youtube.com/embed/' + videoId + '?autoplay=1&html5=1');
   }
 
   var width = $('.ui-window-content').css('width');
