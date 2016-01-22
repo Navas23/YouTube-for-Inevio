@@ -5,7 +5,7 @@ var state = 0; // 0 == startScreen, 1 == listScreen; 2 == playing; 3 == playingT
 var videoPlayer = $('.playing-screen iframe');
 
 function initYoutube() {
-  gapi.client.setApiKey("AIzaSyDf_MlUhD3VU9fsg3LKBUAxkj81gNPWYB0");
+  gapi.client.setApiKey("AIzaSyASBjTorVrmXi_JphTE3TaJvyHzg7bfyT4");
   gapi.client.load("youtube", "v3", function() {
     console.log("cargo api");
   });
@@ -60,7 +60,7 @@ var backToList = function (){
 
     $('.playing-screen').removeClass('full');
 
-    $('.list-screen').animate({
+    $('.list-screen').transition({
 
       'margin-left': '0px'},800
       ,function(){
@@ -71,7 +71,7 @@ var backToList = function (){
 
     );
 
-    $('.playing-screen').animate({
+    $('.playing-screen').transition({
       right: '30px', bottom: '20px' , width: '320px', height: '180px'},800, function(){
       }
     );
@@ -82,7 +82,7 @@ var backToList = function (){
 
   }else if ( state == 3 ) {
 
-    $('.playing-screen').animate({
+    $('.playing-screen').transition({
       'opacity' : '0'},800, function(){
         $('.playing-screen').removeClass('active');
         videoPlayer.attr('src', '');
@@ -109,7 +109,7 @@ var playVideo = function ( videoId ){
   var width = $('.ui-window-content').css('width');
   width = '-' + width;
 
-  $('.list-screen').animate({
+  $('.list-screen').transition({
 
     'margin-left': width},800
     ,function(){
@@ -125,7 +125,7 @@ var playVideo = function ( videoId ){
 
     $('.playing-screen .playing-cover').removeClass('active');
 
-    $('.playing-screen').animate({
+    $('.playing-screen').transition({
       'right': '0px', 'bottom': '0px', 'width': '100%', 'height': $('.ui-window-content').css('height'), function(){
         $('.playing-screen').addClass('full');
       }},800
@@ -133,7 +133,7 @@ var playVideo = function ( videoId ){
 
   }else{
 
-    $('.playing-screen').animate({
+    $('.playing-screen').transition({
       'right': '0px'},800
     );
 
@@ -201,7 +201,7 @@ win.on( 'click', '.ui-input-search .search-icon i' , function(){
     height = '-' + height;
 
     $('.ui-header .ui-input-search input').val( $('.startScreen .ui-input-search input').val() );
-    $('.startScreen').animate({
+    $('.startScreen').transition({
       'margin-top': height},800
       ,function(){
         $('.startScreen').css('display', 'none');
