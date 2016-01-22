@@ -14,7 +14,6 @@ function initYoutube() {
 
 var loadList = function( searchQuery ){
 
-  console.log(arguments);
   $('.list-screen .video-item').not('.wz-prototype').remove();
 
   var request = gapi.client.youtube.search.list({
@@ -69,8 +68,6 @@ var backToList = function (){
 
     );
 
-    console.log('vuelvo');
-
     $('.playing-screen').animate({
       right: '30px', bottom: '20px' , width: '320px', height: '180px'},800, function(){
       }
@@ -122,7 +119,7 @@ var playVideo = function ( videoId ){
   if ( state == 3 ){
 
     $('.playing-screen').animate({
-      'right': '0px', 'top': '51px', 'width': '100%', 'height': $('.ui-window-content').css('height')},800
+      'right': '0px', 'bottom': '0px', 'width': '100%', 'height': $('.ui-window-content').css('height')},800
     );
 
   }else{
@@ -171,7 +168,6 @@ win.on( 'click', '.ui-input-search .search-icon i' , function(){
 
 .on( 'ui-view-resize-start' , function(e){
 
-  console.log('resizing');
   if(state != 3){
     $('.playing-cover').addClass('active');
   }
@@ -180,7 +176,6 @@ win.on( 'click', '.ui-input-search .search-icon i' , function(){
 
 .on( 'ui-view-resize-end' , function(e){
 
-  console.log('end');
   if(state != 3){
     $('.playing-cover').removeClass('active');
   }
@@ -216,8 +211,6 @@ win.on( 'click', '.ui-input-search .search-icon i' , function(){
     searchQuery = $('.ui-header .ui-input-search input').val();
   }
 
-
-  console.log(searchQuery);
   loadList( searchQuery );
 
 });
