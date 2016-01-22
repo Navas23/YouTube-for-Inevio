@@ -123,6 +123,8 @@ var playVideo = function ( videoId ){
 
   if ( state == 3 ){
 
+    $('.playing-screen .playing-cover').removeClass('active');
+
     $('.playing-screen').animate({
       'right': '0px', 'bottom': '0px', 'width': '100%', 'height': $('.ui-window-content').css('height'), function(){
         $('.playing-screen').addClass('full');

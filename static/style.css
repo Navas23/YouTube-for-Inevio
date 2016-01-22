@@ -40,7 +40,7 @@
   height: 30px;
   float: left;
   margin-top: 10px;
-  margin-right: 42px;
+  margin-right: 40px;
 }
 
 .ui-header .youtube-logo i{
@@ -53,7 +53,6 @@
 
 .ui-header .ui-input-search{
   float: left;
-  margin-left: 40px;
   margin-top: 5px;
   width: 475px;
   border: 1px solid transparent;
