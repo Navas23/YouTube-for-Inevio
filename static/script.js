@@ -2,7 +2,7 @@ var map;
 var win = $(this);
 var videoItemPrototype = $('.video-item.wz-prototype');
 var state = 0; // 0 == startScreen, 1 == listScreen; 2 == playing; 3 == playingThumbnail
-var videoPlayer = $('.playing-screen iframe');
+var videoPlayer = $('.playing-screen');
 
 function initYoutube() {
   gapi.client.setApiKey("AIzaSyASBjTorVrmXi_JphTE3TaJvyHzg7bfyT4");
@@ -71,14 +71,30 @@ var backToList = function (){
 
     );
 
+    var scaleWidth = 320 / parseInt( $('.ui-window-content').css('width') , 10 );
+    var scaleHeight = 180 / parseInt( $('.ui-window-content').css('height') , 10 );
+
     $('.playing-screen').transition({
-      right: '30px', bottom: '20px' , width: '320px', height: '180px'},800, function(){
-      }
-    );
+      right: '30px', bottom: '20px' ,
+      '-webkit-transform': "scale(" + scaleWidth + "," + scaleHeight + ")", '-o-transform': "scale(" + scaleWidth + "," + scaleHeight + ")",
+       '-moz-transform': "scale(" + scaleWidth + "," + scaleHeight + ")"
+    },800,function(){
 
-    $('.playing-screen .playing-cover').addClass('active');
+      var width = parseInt( $('.playing-screen').css('width') , 10 ) * scaleWidth;
+      width = width.toString() + 'px';
+      var height = parseInt( $('.playing-screen').css('height') , 10 ) * scaleHeight;
+      height = height.toString() + 'px';
 
-    state = 3;
+      $('.playing-cover').css({
+        'width': width,
+        'height': height,
+        'right': '30px',
+        'bottom': '20px'
+      }).addClass('active');
+
+      state = 3;
+
+    });
 
   }else if ( state == 3 ) {
 
@@ -90,7 +106,7 @@ var backToList = function (){
         //console.log()
         $('.playing-screen').css({'right': rightValue,'bottom': '0px', 'width': '100%', 'height': "100%", 'opacity' : '1'})
         state = 2;
-        $('.playing-screen .playing-cover').removeClass('active');
+        $('.playing-cover').removeClass('active');
       }
     );
 
@@ -123,13 +139,22 @@ var playVideo = function ( videoId ){
 
   if ( state == 3 ){
 
-    $('.playing-screen .playing-cover').removeClass('active');
+    $('.playing-cover').removeClass('active');
 
     $('.playing-screen').transition({
-      'right': '0px', 'bottom': '0px', 'width': '100%', 'height': $('.ui-window-content').css('height'), function(){
-        $('.playing-screen').addClass('full');
-      }},800
-    );
+      right: '0px', bottom: '0px' ,
+      '-webkit-transform': "scale(1)", '-o-transform': "scale(1)",
+       '-moz-transform': "scale(1)"
+    },800,function(){
+
+      $('.playing-cover').css({
+        'width': 'inherit',
+        'height': 'inherit',
+        'right': '0px',
+        'bottom': '0px'
+      })
+
+    });
 
   }else{
 
@@ -159,7 +184,7 @@ win.on( 'click', '.ui-input-search .search-icon i' , function(){
 
 })
 
-.on( 'click' , '.playing-screen .playing-cover.active', function(e){
+.on( 'click' , '.playing-cover.active', function(e){
 
   if( state == 3 ){
     playVideo();
@@ -168,7 +193,7 @@ win.on( 'click', '.ui-input-search .search-icon i' , function(){
 
 })
 
-.on( 'click' , '.playing-screen .playing-cover.active i', function(e){
+.on( 'click' , '.playing-cover.active i', function(e){
 
   backToList();
   e.stopPropagation();
