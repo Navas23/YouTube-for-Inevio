@@ -277,6 +277,24 @@ win.on( 'click', '.ui-input-search .search-icon i' , function(){
 
 })
 
+/*.on( 'ui-dragstart' , function(e){
+
+  console.log('dragstart');
+
+})
+
+.on( 'ui-dragend' , function(e){
+
+  console.log('dragend');
+
+})
+
+.on( 'ui-dragstop' , function(e){
+
+  console.log('dragstop');
+
+})*/
+
 .key( 'enter', function(){
 
   var searchQuery;
