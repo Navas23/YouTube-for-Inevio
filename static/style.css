@@ -19,12 +19,14 @@
 }
 
 .ui-header .arrow{
-  width: 16px;
-  height: 16px;
+  width: 28px;
+  height: 28px;
   float: left;
-  margin-left: 15px;
-  margin-top: 17px;
-  margin-right: 13px;
+  margin-left: 8px;
+  margin-top: 10px;
+  margin-right: 6px;
+  border-radius: 3px;
+  border: 1px solid transparent;
 }
 
 .ui-header .arrow i{
@@ -33,6 +35,8 @@
   background-image: url('@static/assets/arrow.png');
   background-size: 16px 16px;
   display: none;
+  background-repeat: no-repeat;
+  margin: 6px;
 }
 
 .ui-header .youtube-logo{
@@ -86,6 +90,10 @@
   display: inline-block;
 }
 
+.ui-header.playing .arrow:hover{
+  border: 1px solid #c2cacd;
+}
+
 .ui-header.firstStart .youtube-logo i{
   display: none;
 }
@@ -124,7 +132,7 @@
 }
 
 .startScreen .ui-input-search.active{
-  border-color: #e62117;
+  border: 1px solid #e62117;
 }
 
 .startScreen .ui-input-search.active .search-icon{
@@ -151,7 +159,6 @@
 .ui-window-content .video-list{
   margin: 13px;
   width: ~'calc(100% - 66px)';
-  height: ~'calc(100% - 46px)';
   display: inline-block;
   -webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
@@ -221,6 +228,22 @@
 
 .video-item .description{
   font-size: 13px;
+}
+
+.pagination{
+  margin-left: auto;
+  margin-right: auto;
+  height: 28px;
+  width: 190px;
+  margin-bottom: 13px;
+}
+
+.pagination button{
+  outline: none;
+}
+
+.pagination .prev{
+  margin-right: 17px;
 }
 
 .playing-screen{
