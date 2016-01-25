@@ -159,7 +159,6 @@
 .ui-window-content .video-list{
   margin: 13px;
   width: ~'calc(100% - 66px)';
-  height: ~'calc(100% - 46px)';
   display: inline-block;
   -webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
@@ -229,6 +228,22 @@
 
 .video-item .description{
   font-size: 13px;
+}
+
+.pagination{
+  margin-left: auto;
+  margin-right: auto;
+  height: 28px;
+  width: 190px;
+  margin-bottom: 13px;
+}
+
+.pagination button{
+  outline: none;
+}
+
+.pagination .prev{
+  margin-right: 17px;
 }
 
 .playing-screen{

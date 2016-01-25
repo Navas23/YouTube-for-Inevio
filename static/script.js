@@ -37,7 +37,7 @@ var loadList = function( searchQuery, pageToken ){
      part: "id,snippet",
      type: "video",
      q: encodeURIComponent( searchQuery ).replace(/%20/g, "+"),
-     maxResults: 20
+     maxResults: 15
 
     });
 
@@ -49,6 +49,18 @@ var loadList = function( searchQuery, pageToken ){
      var videoItems  = [];
      nextPage = results.nextPageToken || '';
      prevPage = results.prevPageToken || '';
+
+     if( nextPage === '' ){
+       $( '.next' ).prop( 'disabled' , true);
+     }else{
+       $( '.next' ).prop( 'disabled' , false);
+     }
+
+     if( prevPage === '' ){
+       $( '.prev' ).prop( 'disabled' , true);
+     }else{
+       $( '.prev' ).prop( 'disabled' , false);
+     }
 
      $.each(results.items, function(index, item) {
 
@@ -210,6 +222,26 @@ win.on( 'click', '.ui-input-search .search-icon i' , function(){
 .on( 'click', '.ui-header .arrow' , function(){
 
   backToList();
+
+})
+
+.on( 'click', '.pagination .prev' , function(){
+
+  if( prevPage !== '' ){
+    var searchQuery = $('.ui-header .ui-input-search input').val();
+    loadList( searchQuery, prevPage );
+    $('.list-screen').scrollTop( 0 );
+  }
+
+})
+
+.on( 'click', '.pagination .next' , function(){
+
+  if( nextPage !== '' ){
+    var searchQuery = $('.ui-header .ui-input-search input').val();
+    loadList( searchQuery, nextPage );
+    $('.list-screen').scrollTop( 0 );
+  }
 
 })
 
