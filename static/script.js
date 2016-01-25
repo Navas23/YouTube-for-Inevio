@@ -207,7 +207,7 @@ win.on( 'click', '.ui-input-search .search-icon i' , function(){
 
 })
 
-.on( 'click', '.ui-header .arrow i' , function(){
+.on( 'click', '.ui-header .arrow' , function(){
 
   backToList();
 
