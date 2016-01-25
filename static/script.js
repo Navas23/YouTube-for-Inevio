@@ -106,7 +106,16 @@ var backToList = function (){
         videoPlayer.attr('src', '');
         var rightValue = '-' + $('.ui-window-content').css('width');
         //console.log()
-        $('.playing-screen').css({'right': rightValue,'bottom': '0px', 'width': '100%', 'height': "100%", 'opacity' : '1'})
+        $('.playing-screen').css({'right': rightValue,'bottom': '0px', 'width': '100%', 'opacity' : '1' ,
+        '-webkit-transform': "scale(1)", '-o-transform': "scale(1)", '-moz-transform': "scale(1)" })
+
+        $('.playing-cover').css({
+          'width': 'inherit',
+          'height': 'inherit',
+          'right': '0px',
+          'bottom': '0px'
+        })
+
         state = 2;
 
       }
