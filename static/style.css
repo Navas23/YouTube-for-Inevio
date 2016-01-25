@@ -124,7 +124,7 @@
 }
 
 .startScreen .ui-input-search.active{
-  border-color: #e62117;
+  border: 1px solid #e62117;
 }
 
 .startScreen .ui-input-search.active .search-icon{

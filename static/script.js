@@ -3,6 +3,8 @@ var win = $(this);
 var videoItemPrototype = $('.video-item.wz-prototype');
 var state = 0; // 0 == startScreen, 1 == listScreen; 2 == playing; 3 == playingThumbnail
 var videoPlayer = $('.playing-screen');
+var nextPage = '';
+var prevPage = '';
 
 function initYoutube() {
   gapi.client.setApiKey("AIzaSyASBjTorVrmXi_JphTE3TaJvyHzg7bfyT4");
@@ -12,23 +14,42 @@ function initYoutube() {
 
 }
 
-var loadList = function( searchQuery ){
+var loadList = function( searchQuery, pageToken ){
 
   $('.list-screen .video-item').not('.wz-prototype').remove();
 
-  var request = gapi.client.youtube.search.list({
+  if( typeof pageToken !== 'undefined' ){
+
+    var request = gapi.client.youtube.search.list({
+
+     part: "id,snippet",
+     type: "video",
+     pageToken: pageToken,
+     q: encodeURIComponent( searchQuery ).replace(/%20/g, "+"),
+     maxResults: 20
+
+    });
+
+  }else{
+
+    var request = gapi.client.youtube.search.list({
 
      part: "id,snippet",
      type: "video",
      q: encodeURIComponent( searchQuery ).replace(/%20/g, "+"),
-     maxResults: 10
+     maxResults: 20
 
-   });
+    });
+
+  }
 
   request.execute(function(response) {
 
      var results = response.result;
      var videoItems  = [];
+     nextPage = results.nextPageToken || '';
+     prevPage = results.prevPageToken || '';
+
      $.each(results.items, function(index, item) {
 
        var clonedItem = videoItemPrototype.clone();
@@ -39,9 +60,7 @@ var loadList = function( searchQuery ){
        clonedItem.find('.video-info .channel').text( item.snippet.channelTitle );
        clonedItem.find('.video-info .date').text( item.snippet.publishedAt );
        clonedItem.find('.video-info .description').text( item.snippet.description );
-       //clonedItem.children('iframe').attr('src', '//www.youtube.com/embed/' + item.id.videoId);
        videoItems.push(clonedItem);
-       //$(".content").append(tplawesome(data, [{"title":item.snippet.title, "videoid":item.id.videoId}]));
 
      });
 
@@ -66,7 +85,6 @@ var backToList = function (){
       ,function(){
         $('.ui-header').removeClass('playing');
         $('.ui-window-content').removeClass('playing');
-
       }
 
     );
