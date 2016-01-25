@@ -146,7 +146,7 @@ var backToList = function (){
           'bottom': '0px'
         })
 
-        state = 2;
+        state = 1;
 
       }
     );
