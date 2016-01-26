@@ -216,7 +216,9 @@ win.on( 'click', '.ui-input-search .search-icon i' , function(){
 
 .on( 'click', '.ui-header .arrow' , function(){
 
-  backToList();
+  if(state == 2){
+    backToList();
+  }
 
 })
 
@@ -285,7 +287,7 @@ win.on( 'click', '.ui-input-search .search-icon i' , function(){
       'right': '30px',
       'bottom': '20px'
     }).addClass('active');
-    
+
   }
 
 })
