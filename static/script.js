@@ -5,6 +5,7 @@ var state = 0; // 0 == startScreen, 1 == listScreen; 2 == playing; 3 == playingT
 var videoPlayer = $('.playing-screen');
 var nextPage = '';
 var prevPage = '';
+var thumbnailScale = 0.37;
 
 function initYoutube() {
   gapi.client.setApiKey("AIzaSyASBjTorVrmXi_JphTE3TaJvyHzg7bfyT4");
@@ -101,19 +102,14 @@ var backToList = function (){
 
     );
 
-    var scaleWidth = 320 / parseInt( $('.ui-window-content').css('width') , 10 );
-    var scaleHeight = 180 / parseInt( $('.ui-window-content').css('height') , 10 );
-
     $('.playing-screen').transition({
       right: '30px', bottom: '20px' ,
-      '-webkit-transform': "scale(" + scaleWidth + "," + scaleHeight + ")", '-o-transform': "scale(" + scaleWidth + "," + scaleHeight + ")",
-       '-moz-transform': "scale(" + scaleWidth + "," + scaleHeight + ")"
+      '-webkit-transform': "scale(" + thumbnailScale + ")", '-o-transform': "scale(" + thumbnailScale + ")",
+       '-moz-transform': "scale(" + thumbnailScale + ")"
     },800,function(){
 
-      var width = parseInt( $('.playing-screen').css('width') , 10 ) * scaleWidth;
-      width = width.toString() + 'px';
-      var height = parseInt( $('.playing-screen').css('height') , 10 ) * scaleHeight;
-      height = height.toString() + 'px';
+      var width = parseInt( $('.ui-window-content').css('width') , 10 ) * thumbnailScale;
+      var height = parseInt( $('.ui-window-content').css('height') , 10 ) * thumbnailScale;
 
       $('.playing-cover').css({
         'width': width,
@@ -123,7 +119,6 @@ var backToList = function (){
       }).addClass('active');
 
       state = 3;
-
     });
 
   }else if ( state == 3 ) {
@@ -261,39 +256,39 @@ win.on( 'click', '.ui-input-search .search-icon i' , function(){
 
 })
 
-.on( 'ui-view-resize-start' , function(e){
+.on( 'ui-view-resize-start ui-view-blur' , function(e){
 
-  if(state != 3){
+  if(state == 2){
     $('.playing-cover').addClass('active');
   }
 
 })
 
-.on( 'ui-view-resize-end' , function(e){
+.on( 'ui-view-resize-end ui-view-focus' , function(e){
 
-  if(state != 3){
+  if(state == 2){
     $('.playing-cover').removeClass('active');
   }
 
 })
 
-/*.on( 'ui-dragstart' , function(e){
+.on( 'ui-view-resize', function(){
 
-  console.log('dragstart');
+  if( state == 3 ){
+
+    var width = parseInt( $('.ui-window-content').css('width') , 10 ) * thumbnailScale;
+    var height = parseInt( $('.ui-window-content').css('height') , 10 ) * thumbnailScale;
+
+    $('.playing-cover').css({
+      'width': width,
+      'height': height,
+      'right': '30px',
+      'bottom': '20px'
+    }).addClass('active');
+    
+  }
 
 })
-
-.on( 'ui-dragend' , function(e){
-
-  console.log('dragend');
-
-})
-
-.on( 'ui-dragstop' , function(e){
-
-  console.log('dragstop');
-
-})*/
 
 .key( 'enter', function(){
 
@@ -325,6 +320,24 @@ win.on( 'click', '.ui-input-search .search-icon i' , function(){
   }
 
   loadList( searchQuery );
+
+});
+
+
+win.parent()
+.on( 'wz-dragstart' , function(e){
+
+  if(state == 2){
+    //$('.playing-cover').addClass('active');
+  }
+
+})
+
+.on( 'wz-dragend' , function(e){
+
+  if(state == 2){
+    //$('.playing-cover').removeClass('active');
+  }
 
 });
 
