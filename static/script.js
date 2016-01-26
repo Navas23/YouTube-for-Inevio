@@ -330,7 +330,7 @@ win.parent()
 .on( 'wz-dragstart' , function(e){
 
   if(state == 2){
-    //$('.playing-cover').addClass('active');
+    $('.playing-cover').addClass('active');
   }
 
 })
@@ -338,7 +338,7 @@ win.parent()
 .on( 'wz-dragend' , function(e){
 
   if(state == 2){
-    //$('.playing-cover').removeClass('active');
+    $('.playing-cover').removeClass('active');
   }
 
 });
