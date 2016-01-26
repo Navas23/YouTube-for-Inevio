@@ -154,9 +154,9 @@ var playVideo = function ( videoId ){
 
   $('.playing-screen').addClass('active');
 
-  if( state != 3 || typeof videoId !== 'undefined' ){
+  /*if( state != 3 || typeof videoId !== 'undefined' ){
     videoPlayer.attr('src', '//www.youtube.com/embed/' + videoId + '?autoplay=1&html5=1');
-  }
+  }*/
 
   var width = $('.ui-window-content').css('width');
   width = '-' + width;
@@ -168,6 +168,9 @@ var playVideo = function ( videoId ){
       $('.ui-header').addClass('playing');
       $('.ui-window-content').addClass('playing');
       $('.playing-screen').addClass('full');
+      if( state != 3 || typeof videoId !== 'undefined' ){
+        videoPlayer.attr('src', '//www.youtube.com/embed/' + videoId + '?autoplay=1&html5=1');
+      }
       state = 2;
     }
 
