@@ -8,10 +8,12 @@ var prevPage = '';
 var thumbnailScale = 0.37;
 
 function initYoutube() {
+
   gapi.client.setApiKey("AIzaSyASBjTorVrmXi_JphTE3TaJvyHzg7bfyT4");
   gapi.client.load("youtube", "v3", function() {
-    console.log("cargo api");
+    $('.startScreen .ui-input-search input').focus();
   });
+
 
 }
 
