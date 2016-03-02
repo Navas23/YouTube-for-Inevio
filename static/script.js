@@ -8,10 +8,20 @@ var prevPage = '';
 var thumbnailScale = 0.37;
 
 function initYoutube() {
+
   gapi.client.setApiKey("AIzaSyASBjTorVrmXi_JphTE3TaJvyHzg7bfyT4");
   gapi.client.load("youtube", "v3", function() {
-    console.log("cargo api");
+    $('.startScreen .ui-input-search input').focus();
   });
+
+
+}
+
+var _formatDate = function( dateString ){
+
+  var formattedDate = dateString.substring( 0,10 );
+  formattedDate = formattedDate.split( '-' );
+  return ( formattedDate[2] + '/' +  formattedDate[1] + '/' + formattedDate[0] );
 
 }
 
@@ -71,7 +81,8 @@ var loadList = function( searchQuery, pageToken ){
        clonedItem.find('.thumbnail figure i').css( 'background-image', 'url(' + item.snippet.thumbnails.medium.url  + ')' );
        clonedItem.find('.video-info .title').text( item.snippet.title );
        clonedItem.find('.video-info .channel').text( item.snippet.channelTitle );
-       clonedItem.find('.video-info .date').text( item.snippet.publishedAt );
+       console.log( item.snippet.publishedAt );
+       clonedItem.find('.video-info .date').text( _formatDate( item.snippet.publishedAt ) );
        clonedItem.find('.video-info .description').text( item.snippet.description );
        videoItems.push(clonedItem);
 
