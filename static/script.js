@@ -180,7 +180,7 @@ var playVideo = function ( videoId ){
       $('.ui-window-content').addClass('playing');
       $('.playing-screen').addClass('full');
       if( state != 3 || typeof videoId !== 'undefined' ){
-        videoPlayer.attr('src', '//www.youtube.com/embed/' + videoId + '?autoplay=1&html5=1');
+        videoPlayer.attr('src', '//www.youtube.com/embed/' + videoId + '?autoplay=1&html5=1&rel=0');
       }
       state = 2;
     }
