@@ -60,6 +60,12 @@
             }
         }
 
+    },
+    
+    "stats" : {
+
+        "active-dau" : "visible"
+
     }
 
 }
